@@ -1,0 +1,291 @@
+@font-face {
+	font-family: Title;
+	src: url("fonts/CaviarDreams_Bold.ttf");
+}
+
+@font-face {
+	font-family: Paragraphe;
+	src: url("fonts/Cabin-Regular.ttf");
+}
+
+html {
+	height: 100%;
+}
+
+body {
+	background-color: #E9EEF1;
+	margin: 0;
+	min-height: 100%;
+}
+
+p {
+	font-family: "Paragraphe";
+	color: #3c3d3f;
+}
+
+h3 {
+	font-family: "Title";
+	font-size: 1.5em;
+	color: #ed803d;
+	margin-top : 0px;
+}
+
+.spinner {
+	position: relative;
+	text-align: center;
+	padding-top: 50px;
+}
+
+#navigation {
+	display: inline-block;
+	margin: 0;
+	background-color: #4d4d4e;
+	max-width: 200px;
+	min-height: 100vh;	
+	-webkit-box-shadow: inset -4px 0 5px rgba(0,0,0,.75);
+	-moz-box-shadow: inset -4px 0 5px rgba(0,0,0,.75);
+	box-shadow: inset -4px 0 5px rgba(0,0,0,.75);
+}
+
+#navigation #menu {
+	display: block;
+	width: 200px;
+}
+
+#navigation #logo {
+	height: 100%;
+}
+
+#navigation img {
+	position: relative;
+	top: 10px;
+	width: 95%;
+}
+
+#navigation #menu ul {
+	list-style: none;
+	display: inline-block;
+	margin-top: 5em;
+	width: inherit;
+	padding-left: initial;
+	padding-right: initial;
+	position: absolute;
+	
+}
+
+#navigation #menu li {
+
+}
+
+#navigation #menu li a {
+	text-decoration: none;
+	font-family: Title;
+	color: #3c3d3f;
+	display: block;
+	padding: 10px;
+	background-color: #79b41c;
+	text-align: center;
+	width: inherit;
+	border-bottom: 1px solid;
+	border-color: rgb(0, 0, 0, 0.75);
+}
+
+#navigation #menu li a:active,
+#navigation #menu li a:focus {
+	outline: none;
+	-webkit-box-shadow: inset -3px 0 5px rgba(0,0,0,.75);
+	-moz-box-shadow: inset -3px 0 5px rgba(0,0,0,.75);
+	box-shadow: inset -3px 0 5px rgba(0,0,0,.75);
+}
+
+#navigation #menu li a:hover {
+	cursor: default;
+}
+
+.btnError a{
+	background-color: #ed803d;
+}
+
+.error {
+	color: red;
+}
+
+.header {
+	display: block;
+}
+
+.header2 {
+	display: inline-block;
+}
+
+.ui-autocomplete {
+	background-color: #3c3d3f;
+	color: white;
+	-webkit-box-shadow: 0px 0px 0px 2px #79b41c;
+	-moz-box-shadow: 0px 0px 0px 2px #79b41c;
+	box-shadow: 0px 0px 0px 2px #79b41c;
+	-webkit-border-radius: 8px/6px;
+	-moz-border-radius: 8px/6px;
+	border-radius: 8px/6px;
+	
+}
+
+.ui-datepicker .ui-datepicker-header{
+	background-color: #79b41c;
+}
+
+.ui-datepicker .ui-datepicker-prev:hover,
+.ui-datepicker .ui-datepicker-next:hover {
+	background-color: #70a71a;
+	border: none;
+}
+
+.ui-datepicker {
+	background-color: #E9EEF1;
+}
+
+.header #title,
+.header2 #title {
+	display: block;
+	position: absolute;
+	top: 35px;
+	margin: 0;
+	margin-left: 25%;
+	font-size: 4em;
+	font-family: "Title";
+	color: #79b41c;
+	-webkit-text-shadow: 1px 1px 2px white;
+	-moz-text-shadow: 1px 1px 2px white;
+	text-shadow: 1px 1px 2px white;
+	font-family: "Title";
+}
+
+.header {
+	margin-left: 15%;
+}
+
+
+.content {
+	text-align: left;
+	margin-bottom: 50px;
+	
+}
+
+.content2 {
+	display: inline-block;
+	position: absolute;
+	top: 10em;
+	width: 80%;
+/*	margin-bottom: 10%; */
+}
+
+.content .col-mid1,
+.content2 .col-mid1 {
+	display: inline-block;
+	padding: 1em;
+}
+
+.content .col-mid2,
+.content2 .col-mid2 {
+	display: inline-block;
+	text-align: right;
+	float: right;
+	padding: 1em;
+}
+
+.content .col-full,
+.content2 .col-full {
+	width: 100%;
+	text-align: center;
+}
+
+.content .col-full table,
+.content2 .col-full table {
+	width: 100%;
+	text-align: left;
+}
+
+.content .col-full table thead p,
+.content2 .col-full table thead p {
+	font-size: 1.2em;
+	color: #914b91;
+}
+
+.form {
+	text-align: left;
+	position: relative;
+}
+
+.form table {
+	text-align: right;
+}
+
+.form_center {
+	text-align: center;
+	top: 70px;
+}
+
+.form input[type="text"],
+.form input[type="password"],
+.form input[type="date"],
+.form select{
+	width: 229px;
+	height: 30px;
+	-webkit-border-radius: 8px/6px;
+	-moz-border-radius: 8px/6px;
+	border-radius: 8px/6px;
+	background-color: #3c3d3f;
+	color: white;
+	padding-left: 5px;
+	border: none;
+	-webkit-box-shadow: inset 1px 1px 2px rgba(0,0,0,.75);
+	-moz-box-shadow: inset 1px 1px 2px rgba(0,0,0,.75);
+	box-shadow: inset 1px 1px 2px rgba(0,0,0,.75);
+}
+
+.form input[type="submit"],
+.btn {
+	border: none;
+	padding: 8px;
+	padding-left: 10%;
+	padding-right: 10%;
+	background-color: #79b41c;
+	color: #3c3d3f;
+	font-family: "Paragraphe";
+	font-size: 1em;
+	-webkit-box-shadow: 1px 2px 3px rgba(60,61,63,.75);
+	-moz-box-shadow: 1px 2px 3px rgba(60,61,63,.75);
+	box-shadow: 1px 2px 3px rgba(60,61,63,.75);
+	text-decoration: none;
+}
+
+
+.form input[type="text"]:focus,
+.form input[type="password"]:focus,
+.form input[type="date"]:focus,
+.form select:focus {
+	outline: none;
+	background-color: #3c3d3f;
+	-webkit-box-shadow: 0px 0px 0px 2px #79b41c;
+	-moz-box-shadow: 0px 0px 0px 2px #79b41c;
+	box-shadow: 0px 0px 0px 2px #79b41c;
+}
+
+.form input[type="submit"]:active,
+.form input[type="submit"]:focus,
+.btn:active,
+.btn:focus {
+	outline: none;
+	-webkit-box-shadow: 1px 1px 1px rgba(60,61,63,.75);
+	-moz-box-shadow: 1px 1px 1px rgba(60,61,63,.75);
+	box-shadow: 1px 1px 1px rgba(60,61,63,.75);
+}
+
+.form .btn_error input{
+	background-color: #ed803d;
+}
+
+.btn:hover{
+	cursor: default;
+}
+
