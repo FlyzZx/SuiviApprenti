@@ -4,11 +4,11 @@ ehthumbs.db
 
 # Folder config file
 Desktop.ini
-src/projet/suiviapprenti/hibernate.cfg.xml
+src\hibernate.cfg.xml
 
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
-WebContent\
+WebContent\*
 
 # Windows Installer files
 *.cab
