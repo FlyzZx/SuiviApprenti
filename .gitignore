@@ -4,11 +4,9 @@ ehthumbs.db
 
 # Folder config file
 Desktop.ini
-src\hibernate.cfg.xml
 
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
-WebContent\*
 
 # Windows Installer files
 *.cab
@@ -47,5 +45,3 @@ WebContent\*
 Network Trash Folder
 Temporary Items
 .apdisk
-src/hibernate.cfg.xml
-WebContent/WEB-INF/classes/hibernate.cfg.xml
