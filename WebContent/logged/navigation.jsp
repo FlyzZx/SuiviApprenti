@@ -5,10 +5,9 @@
 	<div id="logo"><img src="images/logoJRB.png" alt="Lycée Jean Rostand" /></div>
 	<div id="menu">
 		<ul>
-			<li><a href='<c:url value="/profile" />'>Mon profil</a></li>
-		    <li><a href='<c:url value="/parcours" />'>Mes parcours</a></li>
-		    <!-- <li><a href='#'>Mon cursus</a></li> -->
-		    <!-- <li><a href='#'>Mes absences</a></li> -->
+			<li><a href='<c:url value="/profile" />'>Profil</a></li>
+		    <li><a href='<c:url value="/parcours" />'>Parcours en entreprise</a></li>
+		    <li><a href='<c:url value="/cursus" />'>Cursus scolaire</a></li>
 			<li><a class="btnError" href='<c:url value="/logoff" />'>Déconnexion</a></li>
 		</ul>
 	</div>

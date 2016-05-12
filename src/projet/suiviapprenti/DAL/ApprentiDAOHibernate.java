@@ -39,6 +39,7 @@ public class ApprentiDAOHibernate implements ApprentiDAO {
 				Hibernate.initialize(user.getClasse());
 				Hibernate.initialize(user.getEntreprise());				
 				Hibernate.initialize(user.getParcoursPostBtses());
+				Hibernate.initialize(user.getCursusformations());
 				Iterator<ParcoursPostBts> it = user.getParcoursPostBtses().iterator();
 				while(it.hasNext()) {
 					ParcoursPostBts tmp = (ParcoursPostBts)it.next();
