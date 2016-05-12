@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+ <session-factory>
+  <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+  <property name="hibernate.connection.url">jdbc:mysql://82.240.139.63/suiviapprenti</property>
+  <property name="hibernate.connection.username">userd</property>
+  <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+  <property name="hibernate.connection.password">projetapprenti</property>
+  <mapping class="projet.suiviapprenti.DAL.Entitys.Entreprise"/>
+  <mapping class="projet.suiviapprenti.DAL.Entitys.Taxe"/>
+  <mapping class="projet.suiviapprenti.DAL.Entitys.Apprenti"/>
+  <mapping class="projet.suiviapprenti.DAL.Entitys.Classe"/>
+  <mapping class="projet.suiviapprenti.DAL.Entitys.ClasseProfesseur"/>
+  <mapping class="projet.suiviapprenti.DAL.Entitys.Coordonnees"/>
+  <mapping class="projet.suiviapprenti.DAL.Entitys.Cursusformation"/>
+  <mapping class="projet.suiviapprenti.DAL.Entitys.ParcoursPostBts"/>
+  <mapping class="projet.suiviapprenti.DAL.Entitys.ParticipationSeance"/>
+  <mapping class="projet.suiviapprenti.DAL.Entitys.Professeur"/>
+  <mapping class="projet.suiviapprenti.DAL.Entitys.Seance"/>
+  <mapping class="projet.suiviapprenti.DAL.Entitys.Secretaire"/>
+  <mapping class="projet.suiviapprenti.DAL.Entitys.SeanceEdt"/>
+ </session-factory>
+</hibernate-configuration>
