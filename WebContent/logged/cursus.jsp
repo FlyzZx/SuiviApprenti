@@ -23,6 +23,14 @@
 					<td><p><b>Année</b></p></td>
 					<td><p><b>Obtention</b></p></td>
 				</thead>
+				<c:forEach items="${sessionScope['logged'].cursusformations }" var="cursus">
+					<tr>
+						<td><c:out value="${cursus.type}" /></td>
+						<td><c:out value="${cursus.titreComplement}" /></td>
+						<td><c:out value="${cursus.annee}" /></td>
+						<td><c:out value="${cursus.titreObtenu}" /></td>
+					</tr>
+				</c:forEach>
 			</table>
 		</div>
 	</div>
