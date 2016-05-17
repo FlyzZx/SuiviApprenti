@@ -16,6 +16,7 @@
 	<div class="content2">
 		<h3>Cursus scolaire</h3>
 		<div class="col-full">	
+		<form method="GET" class="form" action="modifcursus">
 			<table>
 				<thead>
 					<td><p><b>Diplôme</b></p></td>
@@ -25,13 +26,18 @@
 				</thead>
 				<c:forEach items="${sessionScope['logged'].cursusformations }" var="cursus">
 					<tr>
-						<td><c:out value="${cursus.type}" /></td>
-						<td><c:out value="${cursus.titreComplement}" /></td>
-						<td><c:out value="${cursus.annee}" /></td>
-						<td><c:out value="${cursus.titreObtenu}" /></td>
+						<td><p><c:out value="${cursus.type}" /></p></td>
+						<td><p><c:out value="${cursus.titreComplement}" /></p></td>
+						<td><p><c:out value="${cursus.annee}" /></p></td>
+						<td><p><c:out value="${cursus.titreObtenu}" /></p></td>
 					</tr>
 				</c:forEach>
 			</table>
+			<center>
+				<a class="btn" href='<c:url value="#" />'>Ajouter</a>
+				<input type="submit" value="Modifier / Supprimer" />
+			</center>
+			</form>
 		</div>
 	</div>
 </body>
