@@ -39,4 +39,8 @@ public class HibernateUtil {
 		return new EntrepriseDAOHibernate(HibernateUtil.getSessionFactory());
 	}
 	
+	public static CursusDAO getCursusDAO() {
+		return new CursusDAOHibernate(HibernateUtil.getSessionFactory());
+	}
+	
 }

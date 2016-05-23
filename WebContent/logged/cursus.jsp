@@ -34,7 +34,7 @@
 				</c:forEach>
 			</table>
 			<center>
-				<a class="btn" href='<c:url value="#" />'>Ajouter</a>
+				<a class="btn" href='<c:url value="/addCursus" />'>Ajouter</a>
 				<input type="submit" value="Modifier / Supprimer" />
 			</center>
 			</form>

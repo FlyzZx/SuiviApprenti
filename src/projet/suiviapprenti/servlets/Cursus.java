@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 public class Cursus extends HttpServlet {
 	private static final long serialVersionUID 	= 1L;
 	public static final String VUE_CURSUS		= "/logged/cursus.jsp";
+	public static final String SERVLET_CURSUS	= "/cursus";
        
     /**
      * @see HttpServlet#HttpServlet()

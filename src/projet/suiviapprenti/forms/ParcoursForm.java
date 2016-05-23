@@ -458,11 +458,6 @@ public class ParcoursForm extends GestionForm {
 		}
 	}
 	
-	private void verifierDate(java.sql.Date date) throws Exception {
-		if(date == null) {
-			throw new Exception("Veuillez spécifier une date valide");
-		}
-	}
 	
 	private void verifierNom(String nom) throws Exception {
 		if(nom.isEmpty()) {
