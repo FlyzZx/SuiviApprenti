@@ -48,11 +48,11 @@
 			
 			<p class="error"><c:out value="${erreurs['errAjout'] }" /></p>
 			<input type="hidden" name="action" id="action" value="modifier" />
-			<input type="hidden" name="select_parcours" id="select_cursus" value="<c:out default="${cursus.idcursusformation }" value="${saisies['idCursus'] }" />" />
+			<input type="hidden" name="select_cursus" id="select_cursus" value="<c:out default="${cursus.idcursusformation }" value="${saisies['idCursus'] }" />" />
 			<tr><td><input type="submit" value="Mettre à jour" /></td>
 		</form>
 		<form method="POST" class="form" action="modifCursus" >
-		<input type="hidden" name="select_parcours" id="select_cursus" value="<c:out default="${cursus.idcursusformation }" value="${saisies['idCursus'] }" />" />
+		<input type="hidden" name="select_cursus" id="select_cursus" value="<c:out default="${cursus.idcursusformation }" value="${saisies['idCursus'] }" />" />
 		<input type="hidden" name="action" id="action" value="supprimer" />
 		<td><span class="btn_error"><input type="submit" value="Supprimer" /></span></td></tr>
 		</form>

@@ -19,6 +19,7 @@ public class CursusForm extends GestionForm {
 	public static final String CHAMP_OBTENTION		= "obtention";
 	public static final String CHAMP_ID_CURSUS		= "select_cursus";
 	public static final String CHAMP_ERREUR_ADD		= "errAjout";
+	public static final String CHAMP_ERREUR_DEL		= "errDelParcours";
 	
 	private Map<String, String> saisies;
 	
@@ -53,8 +54,7 @@ public class CursusForm extends GestionForm {
 			}
 		} catch (NumberFormatException e) {
 			cursus = null;
-		}
-				
+		}		
 		return cursus;
 	}
 	
@@ -126,6 +126,71 @@ public class CursusForm extends GestionForm {
 		
 		Cursusformation cursus = verifierIdCursus(request);
 		
+		saisies.put(CHAMP_DIPLOME, diplome);
+		if(!cursus.getType().equals(diplome)) { //Si la valeur entrée est différente
+			try {
+				verifierNonVide(diplome);
+				cursus.setType(diplome);
+			} catch (Exception e) {
+				erreurs.put(CHAMP_DIPLOME, e.getMessage());
+			}
+		}
+		
+		saisies.put(CHAMP_SPECIALISATION, specialisation);
+		if(!cursus.getTitreComplement().equals(specialisation)) {
+			cursus.setTitreComplement(specialisation);
+		}
+		
+		saisies.put(CHAMP_DATE_DEBUT, dateDebut);
+		java.sql.Date d;
+		try {
+			d = java.sql.Date.valueOf(dateDebut);
+		} catch (Exception e1) {
+			d = null;
+		}
+		if(!cursus.getAnnee().equals(d)) {
+			try {
+				verifierDate(d);
+				cursus.setAnnee(d);
+			} catch (Exception e) {
+				erreurs.put(CHAMP_DATE_DEBUT, e.getMessage());
+			}
+		}
+		
+		saisies.put(CHAMP_OBTENTION, obtention);
+		if(!cursus.getTitreObtenu().equals(obtention)) {
+			try {
+				verifierObtention(obtention);
+				cursus.setTitreObtenu(obtention);
+			} catch (Exception e) {
+				erreurs.put(CHAMP_OBTENTION, e.getMessage());
+			}
+		}
+		
+		//ENVOIS EN BASE
+		Apprenti app = (Apprenti) request.getSession().getAttribute(Login.ATT_SESSION);
+		if(erreurs.isEmpty()) {
+			try {
+				HibernateUtil.getCursusDAO().updateCursus(cursus);
+				app.setCursusformations(HibernateUtil.getCursusDAO().getCursusByApp(app)); //MAJ Apprenti
+			} catch (Exception e) {
+				erreurs.put(CHAMP_ERREUR_ADD, e.getMessage());
+			}
+		}
+		
+	}
+	
+	public void verifierDeleteCursus(HttpServletRequest request) {
+		Cursusformation cursus = verifierIdCursus(request);
+		Apprenti app = (Apprenti) request.getSession().getAttribute(Login.ATT_SESSION);
+		if(cursus != null) {
+			try {
+				HibernateUtil.getCursusDAO().deleteCursus(cursus);
+				app.setCursusformations(HibernateUtil.getCursusDAO().getCursusByApp(app)); //MAJ Apprenti
+			} catch (Exception e) {
+				erreurs.put(CHAMP_ERREUR_DEL, e.getMessage());
+			}
+		}
 	}
 	
 	private void verifierObtention(String obtention) throws Exception {

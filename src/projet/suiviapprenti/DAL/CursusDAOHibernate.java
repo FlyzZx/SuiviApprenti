@@ -1,5 +1,9 @@
 package projet.suiviapprenti.DAL;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -92,6 +96,29 @@ public class CursusDAOHibernate implements CursusDAO {
 		}
 		
 		return cursus;
+	}
+
+	@Override
+	public Set<Cursusformation> getCursusByApp(Apprenti app) throws Exception {
+		Session session = sessionFact.openSession();
+		Transaction tx = session.beginTransaction();
+		Set<Cursusformation> result = null;
+		
+		try {
+			Query que = session.createQuery("From Cursusformation cursus where cursus.apprenti = :app");
+			que.setParameter("app", app);
+			List<Cursusformation> list_retour = (List<Cursusformation>) que.list();
+			
+			result = new HashSet<Cursusformation>(list_retour);
+			tx.commit();
+		} catch (Exception e) {
+			tx.rollback();
+			throw new Exception("Erreur mise à jour apprenti - " + e.getMessage());
+		} finally {
+			session.close();
+		}
+		
+		return result;
 	}
 
 }
