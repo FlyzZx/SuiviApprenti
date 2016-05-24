@@ -1,6 +1,7 @@
 package projet.suiviapprenti.forms;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import projet.suiviapprenti.DAL.HibernateUtil;
 import projet.suiviapprenti.DAL.Entitys.Apprenti;
 import projet.suiviapprenti.DAL.Entitys.Cursusformation;
+import projet.suiviapprenti.DAL.Entitys.ParcoursPostBts;
 import projet.suiviapprenti.servlets.Login;
 
 public class CursusForm extends GestionForm {
@@ -15,6 +17,7 @@ public class CursusForm extends GestionForm {
 	public static final String CHAMP_SPECIALISATION	= "specialisation";
 	public static final String CHAMP_DATE_DEBUT		= "annee";
 	public static final String CHAMP_OBTENTION		= "obtention";
+	public static final String CHAMP_ID_CURSUS		= "select_cursus";
 	public static final String CHAMP_ERREUR_ADD		= "errAjout";
 	
 	private Map<String, String> saisies;
@@ -26,6 +29,33 @@ public class CursusForm extends GestionForm {
 	
 	public Map<String, String> getSaisie() {
 		return saisies;
+	}
+	
+	public Cursusformation verifierIdCursus(HttpServletRequest request) {
+		Cursusformation cursus = null;
+		try {
+			Apprenti app = (Apprenti) request.getSession().getAttribute(Login.ATT_SESSION); //Récupération de l'apprenti dans la Session
+			int idCursus = Integer.parseInt(request.getParameter(CHAMP_ID_CURSUS)); //Récupération de l'id
+			
+			Iterator<Cursusformation> it_cursus = app.getCursusformations().iterator();
+			
+			while(it_cursus.hasNext()) { //Tant qu'il y a des objets dans le set
+				Cursusformation tmp = it_cursus.next();
+				if(tmp.getIdcursusformation() == idCursus) { //Si l'ID demandé correspond a un des parcours de l'apprenti
+					//parcours = tmp;
+					try {
+						cursus = HibernateUtil.getCursusDAO().getCursusById(tmp.getIdcursusformation()); //Récupération direct depuis BDD pour MAJ des données en cas de 
+																											   //modification au cours de la session actuelle
+					} catch (Exception e) {
+						
+					}
+				}
+			}
+		} catch (NumberFormatException e) {
+			cursus = null;
+		}
+				
+		return cursus;
 	}
 	
 	public void verifierAjoutCursus(HttpServletRequest request) {
@@ -85,6 +115,16 @@ public class CursusForm extends GestionForm {
 				erreurs.put(CHAMP_ERREUR_ADD, e.getMessage());
 			}
 		}
+		
+	}
+	
+	public void verifierModificationCursus(HttpServletRequest request) {
+		String diplome			= request.getParameter(CHAMP_DIPLOME);
+		String specialisation	= request.getParameter(CHAMP_SPECIALISATION);
+		String dateDebut		= request.getParameter(CHAMP_DATE_DEBUT);
+		String obtention		= request.getParameter(CHAMP_OBTENTION);
+		
+		Cursusformation cursus = verifierIdCursus(request);
 		
 	}
 	

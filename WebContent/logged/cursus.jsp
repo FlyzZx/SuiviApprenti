@@ -16,7 +16,7 @@
 	<div class="content2">
 		<h3>Cursus scolaire</h3>
 		<div class="col-full">	
-		<form method="GET" class="form" action="modifcursus">
+		<form method="GET" class="form" action="modifCursus">
 			<table>
 				<thead>
 					<td><p><b>Diplôme</b></p></td>
@@ -30,6 +30,7 @@
 						<td><p><c:out value="${cursus.titreComplement}" /></p></td>
 						<td><p><c:out value="${cursus.annee}" /></p></td>
 						<td><p><c:out value="${cursus.titreObtenu}" /></p></td>
+						<td><input type="radio" value="<c:out value="${cursus.idcursusformation }" />" name="select_cursus" /></td>
 					</tr>
 				</c:forEach>
 			</table>

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Ajouter une étape à votre parcours !</title>
+<title>Ajouter une étape à votre cursus</title>
 <link rel="stylesheet" type="text/css" href="css/jquery-ui.css" />
 <link rel="stylesheet" type="text/css" href="css/layout.css" />
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
