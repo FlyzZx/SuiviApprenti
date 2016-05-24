@@ -47,11 +47,32 @@ public class ModifCursus extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		CursusForm cForm = new CursusForm();
+		Cursusformation cursus = cForm.verifierIdCursus(request);
 		String action = request.getParameter(ATT_ACTION);
 		switch (action) {
 		case "modifier":
+			//Update en base
+			cForm.verifierModificationCursus(request);
+			request.setAttribute(UpdateProfile.ATT_SAISIES, cForm.getSaisie());
+			request.setAttribute(UpdateProfile.ATT_ERREURS, cForm.getErreurs());
+			if(cForm.getErreurs().isEmpty()) {
+				request.removeAttribute(UpdateProfile.ATT_SAISIES); //Suppression des saisies
+				response.sendRedirect(request.getContextPath() + Cursus.SERVLET_CURSUS); //Redirection vers page cursus
+			} else { //Si il y a erreurs
+				request.setAttribute(ATT_CURSUS, cursus);
+				this.getServletContext().getRequestDispatcher(VUE_MODIF_CURSUS).forward(request, response);
+			}
 			break;
 		case "supprimer":
+			cForm.verifierDeleteCursus(request);
+			request.setAttribute(UpdateProfile.ATT_ERREURS, cForm.getErreurs());
+			if(cForm.getErreurs().isEmpty()) {
+				response.sendRedirect(request.getContextPath() + Cursus.SERVLET_CURSUS);
+			} else {
+				request.setAttribute(UpdateProfile.ATT_ERREURS, cForm.getErreurs());
+				this.getServletContext().getRequestDispatcher(VUE_MODIF_CURSUS).forward(request, response);
+			}
 			break;
 		default:
 			break;
