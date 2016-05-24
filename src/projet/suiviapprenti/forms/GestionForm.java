@@ -60,6 +60,18 @@ public abstract class GestionForm {
 		}
 	}
 	
+	protected void verifierNonVide(String data) throws Exception {
+		if(data.isEmpty()) {
+			throw new Exception("Ce champs ne peut pas être vide");
+		}
+	}
+	
+	protected void verifierDate(java.sql.Date date) throws Exception {
+		if(date == null) {
+			throw new Exception("Veuillez spécifier une date valide");
+		}
+	}
+	
 	protected void verifierSiteWeb(String site) throws Exception {
 		if(site.isEmpty()){
 			throw new Exception("Veuillez saisir un site, ou 'aucun'");

@@ -46,3 +46,4 @@ Network Trash Folder
 Temporary Items
 .apdisk
 src/hibernate.cfg.xml
+WebContent/WEB-INF/classes/hibernate.cfg.xml
