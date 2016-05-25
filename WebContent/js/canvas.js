@@ -17,12 +17,12 @@ function drawProgressProfil(nbParcours, nbCursus) {
 	
 	ctx.beginPath();
 	if(nbParcours == 0 && nbCursus == 0) {
-		ctx.arc(posX, posY, diam, angleStart, 0.33 * Math.PI, true);
-		ctx.fillText("33%", posX, posY);
+		ctx.arc(posX, posY, diam, angleStart, 1.33 * Math.PI, true);
+		ctx.fillText("33%", posX - 25, posY + 10);
 	}
-	else if((nbParcours > 0 || nbCursus > 0) && !(nbParcours > 0 && nbCursus > 0)) {
-		ctx.arc(posX, posY, diam, angleStart, 0.66 * Math.PI, true); //EXCLUSIVE OR
-		ctx.fillText("66%", posX, posY);
+	else if((nbParcours > 0 || nbCursus > 0) && !(nbParcours > 0 && nbCursus > 0)) { //EXCLUSIVE OR
+		ctx.arc(posX, posY, diam, angleStart, 0.66 * Math.PI, true); 
+		ctx.fillText("66%", posX - 25, posY + 10);
 	} else {
 		ctx.arc(posX, posY, diam, angleStart, 2 * Math.PI, true);
 		ctx.fillText("100%", posX - 35, posY + 10);
