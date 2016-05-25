@@ -8,7 +8,7 @@ function drawProgressProfil(nbParcours, nbCursus) {
 	
 	ctx.lineWidth = 20;
 	ctx.strokeStyle = "#79b41c";
-	ctx.fillStyle = "#000000";
+	ctx.fillStyle = "#4d4d4e";
 	ctx.font = "20pt Arial";
 	var posX = 100;
 	var posY = 100;
