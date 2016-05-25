@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
+    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
     <!-- La lib FMT permet le formatage des dates sans utiliser de code JAVA -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -9,6 +10,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="css/layout.css" />
 <script type="text/javascript" src="js/jquery-1.12.1.min.js" ></script>
+<script type="text/javascript" src="js/canvas.js" ></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
 <script type="text/javascript">
 //paste this code under the head tag or in a separate js file.
@@ -20,7 +22,7 @@
 </script>
 <title>Profil Personnel</title>
 </head>
-<body>
+<body onload="drawProgressProfil(<c:out value="${fn:length(sessionScope['logged'].parcoursPostBtses) }" />, <c:out value="${fn:length(sessionScope['logged'].cursusformations) }" />)">
 <c:import url="navigation.jsp"></c:import>
 <c:import url="headerb.jsp"></c:import>
 <div class="content2">
@@ -46,7 +48,14 @@
 				<p><b>Nom de l'entreprise :</b> <c:out value="${sessionScope['logged'].entreprise.nomEntreprise }" /></p>
 				<p><b>Branche :</b>			<c:out value="${sessionScope['logged'].entreprise.branche }" /></p>
 				<p><b>Nombre de salariés :</b> <c:out value="${sessionScope['logged'].entreprise.nbSalaries }" /></p>
+				<div id="div_canvas_profil">
+				<h3>Progression du profil</h3>
+					<canvas id="canvas_profil_complete" width="250" height="250">
+						<p>Désolé, votre navigateur ne support pas Canvas.</p>
+					</canvas> 
+				</div>
 			</div>
+
 			
 			<div>
 				<a class="btn" href='<c:url value="/updateProfile" />'>Mettre à jour</a>
