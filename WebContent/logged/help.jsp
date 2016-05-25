@@ -10,13 +10,21 @@
 <link rel="stylesheet" type="text/css" href="css/layout.css" />
 <script type="text/javascript" src="js/jquery-1.12.1.min.js" ></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
-<title>Profil Personnel</title>
+<title>Aide d'utilisation</title>
 </head>
 <body>
 <c:import url="navigation.jsp"></c:import>
 <c:import url="headerb.jsp"></c:import>
 <div class="content2">
 	<h3>Aide à l'utilisation de l'application</h3>
+	<h4>Le profil personnel</h4>
+	<p>Le profil personnel regroupe toutes les informations vous concernant. Vous pouvez modifier certaines de ces informations.</p>
+	<br>
+	<h4>Les parcours en entreprise</h4>
+	<p>Les parcours en entreprise représentent soit une formation en alternance, sois un emploi après le BTS.</p>
+	<br>
+	<h4>Le cursus scolaire</h4>
+	<p>Le cursus scolaire représente le parcours scolaire, ainsi que les parcours post BTS en filière théorique.</p>
 </div>
 </body>
 </html>
