@@ -8,6 +8,7 @@
 			<li><a href='<c:url value="/profile" />'>Profil</a></li>
 		    <li><a href='<c:url value="/parcours" />'>Parcours en entreprise</a></li>
 		    <li><a href='<c:url value="/cursus" />'>Cursus scolaire</a></li>
+		    <li><a href='<c:url value="/help" />'>Aide</a></li>
 			<li><a class="btnError" href='<c:url value="/logoff" />'>Déconnexion</a></li>
 		</ul>
 	</div>
