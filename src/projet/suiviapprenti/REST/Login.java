@@ -11,10 +11,12 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
 import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.map.SerializationConfig.Feature;
 import org.json.simple.JSONObject;
 
 import projet.suiviapprenti.DAL.HibernateUtil;
 import projet.suiviapprenti.DAL.Entitys.Apprenti;
+import projet.suiviapprenti.REST.JSON.JSONViews;
 
 @Path("/login")
 public class Login {
@@ -31,9 +33,6 @@ public class Login {
 			/*JSONObject jObj = new JSONObject();
 			jObj.put("Apprenti", app);*/
 			req.getSession().setAttribute(SESSION_APP, app);
-			ObjectMapper mapper = new ObjectMapper();
-			json_return = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(app);
-			
 		} catch (Exception e) {
 			json_return = e.getMessage();
 			req.getSession().removeAttribute(SESSION_APP);
