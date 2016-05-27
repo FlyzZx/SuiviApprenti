@@ -10,6 +10,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
+import org.codehaus.jackson.map.ObjectMapper;
 import org.json.simple.JSONObject;
 
 import projet.suiviapprenti.DAL.HibernateUtil;
@@ -30,9 +31,11 @@ public class Login {
 			/*JSONObject jObj = new JSONObject();
 			jObj.put("Apprenti", app);*/
 			req.getSession().setAttribute(SESSION_APP, app);
+			ObjectMapper mapper = new ObjectMapper();
+			json_return = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(app);
 			
 		} catch (Exception e) {
-			json_return = "Utilisateur introuvable !";
+			json_return = e.getMessage();
 			req.getSession().removeAttribute(SESSION_APP);
 		} 
 		return json_return;
