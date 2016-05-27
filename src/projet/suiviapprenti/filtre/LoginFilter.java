@@ -44,7 +44,7 @@ public class LoginFilter implements Filter {
 		
         /* Non-filtrage des ressources statiques */
         String chemin = httpRequest.getRequestURI().substring(httpRequest.getContextPath().length());
-        if (chemin.startsWith("/css") || chemin.startsWith("/images") || chemin.startsWith("/js")) {
+        if (chemin.startsWith("/css") || chemin.startsWith("/images") || chemin.startsWith("/js") || chemin.startsWith("/rest")) {
             chain.doFilter( httpRequest, httpResponse );
             return;
         }
