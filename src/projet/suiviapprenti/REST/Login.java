@@ -1,5 +1,7 @@
 package projet.suiviapprenti.REST;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -17,35 +19,38 @@ import projet.suiviapprenti.DAL.Entitys.Apprenti;
 public class Login {
 	public static final String SESSION_APP	= "restLog";
 	
+	//Permet la connection d'un utilisateur en REST
 	@GET
 	@Path("/{identifiant}/{mdp}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public String getTest(@Context HttpServletRequest req, @PathParam("identifiant") String log, @PathParam("mdp") String password) {
-		String json_return = null;
+		String json_return = "Connecté";
 		try {
 			Apprenti app = HibernateUtil.getApprentiDAO().getApprenti(log, password);
-			JSONObject jObj = new JSONObject();
-			jObj.put("Apprenti", app);
-			json_return = jObj.toJSONString();
+			/*JSONObject jObj = new JSONObject();
+			jObj.put("Apprenti", app);*/
 			req.getSession().setAttribute(SESSION_APP, app);
 			
 		} catch (Exception e) {
 			json_return = "Utilisateur introuvable !";
 			req.getSession().removeAttribute(SESSION_APP);
-		}
+		} 
 		return json_return;
 	}
 	
+	
+	//Permet de savoir si l'utilisateur est actuellement connecté ou non
 	@GET
-	@Path("/testLog")
+	@Path("/isConnected")
 	@Produces(MediaType.APPLICATION_JSON)
 	public String getApp(@Context HttpServletRequest req) {
 		Apprenti app = (Apprenti) req.getSession().getAttribute(SESSION_APP);
-		String ret = "Erreur";
+		JSONObject jObj = new JSONObject();
+		jObj.put("connected", false);
 		if(app != null) {
-			ret = app.getNom();
+			jObj.replace("connected", true);
 		}
 		
-		return ret;
+		return jObj.toJSONString();
 	}
 }
