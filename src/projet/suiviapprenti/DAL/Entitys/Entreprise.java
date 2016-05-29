@@ -27,7 +27,7 @@ import projet.suiviapprenti.REST.JSON.JSONViews;
 @Table(name = "entreprise", catalog = "suiviapprenti")
 public class Entreprise implements java.io.Serializable {
 
-	private Integer identreprise;
+	@JsonView(JSONViews.InfoProfil.class) private Integer identreprise;
 	private Coordonnees coordonnees;
 	@JsonView(JSONViews.InfoProfil.class) private String nomEntreprise;
 	@JsonView(JSONViews.InfoProfil.class) private String branche;

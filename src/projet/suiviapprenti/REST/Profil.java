@@ -28,7 +28,7 @@ public class Profil {
 			ObjectMapper mapper = new ObjectMapper();
 			mapper.configure(Feature.DEFAULT_VIEW_INCLUSION, false); //Utiliser uniquement les champs marqués
 			try {
-				jsonReturn = mapper.writerWithView(JSONViews.InfoProfil.class).writeValueAsString(app);
+				jsonReturn = mapper.writerWithDefaultPrettyPrinter().withView(JSONViews.InfoProfil.class).writeValueAsString(app);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

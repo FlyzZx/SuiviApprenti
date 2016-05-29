@@ -31,7 +31,7 @@ import projet.suiviapprenti.REST.JSON.JSONViews;
 @Table(name = "apprenti", catalog = "suiviapprenti")
 public class Apprenti implements java.io.Serializable {
 
-	private Integer idApprenti;
+	@JsonView(JSONViews.InfoProfil.class)   private Integer idApprenti;
 	@JsonView(JSONViews.InfoProfil.class)	private Classe classe;
 	@JsonView(JSONViews.InfoProfil.class)   private Coordonnees coordonnees;
 	@JsonView(JSONViews.InfoProfil.class)   private Entreprise entreprise;
@@ -46,9 +46,9 @@ public class Apprenti implements java.io.Serializable {
 	private String motDePasse;
 	@JsonView(JSONViews.InfoProfil.class)	private String missionPrincipale;
 	private Set<ParticipationSeance> participationSeances = new HashSet<ParticipationSeance>(0);
-	private Set<Cursusformation> cursusformations = new HashSet<Cursusformation>(0);
+	@JsonView(JSONViews.InfoProfil.class)   private Set<Cursusformation> cursusformations = new HashSet<Cursusformation>(0);
 	private Set<Taxe> taxes = new HashSet<Taxe>(0);
-	private Set<ParcoursPostBts> parcoursPostBtses = new HashSet<ParcoursPostBts>(0);
+	@JsonView(JSONViews.InfoProfil.class)   private Set<ParcoursPostBts> parcoursPostBtses = new HashSet<ParcoursPostBts>(0);
 
 	public Apprenti() {
 	}

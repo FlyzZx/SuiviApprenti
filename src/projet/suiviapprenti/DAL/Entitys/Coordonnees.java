@@ -23,7 +23,7 @@ import projet.suiviapprenti.REST.JSON.JSONViews;
 @Table(name = "coordonnees", catalog = "suiviapprenti")
 public class Coordonnees implements java.io.Serializable {
 
-	private Integer idcoordonnees;
+	@JsonView(JSONViews.InfoProfil.class) private Integer idcoordonnees;
 	@JsonView(JSONViews.InfoProfil.class) private String rue;
 	@JsonView(JSONViews.InfoProfil.class) private String ville;
 	@JsonView(JSONViews.InfoProfil.class) private String codePostal;
