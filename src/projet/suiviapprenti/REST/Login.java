@@ -27,32 +27,14 @@ public class Login {
 	@Path("/{identifiant}/{mdp}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public String getTest(@Context HttpServletRequest req, @PathParam("identifiant") String log, @PathParam("mdp") String password) {
-		String json_return = "Connecté";
+		String json_return = "";
 		try {
 			Apprenti app = HibernateUtil.getApprentiDAO().getApprenti(log, password);
-			/*JSONObject jObj = new JSONObject();
-			jObj.put("Apprenti", app);*/
 			req.getSession().setAttribute(SESSION_APP, app);
 		} catch (Exception e) {
 			json_return = e.getMessage();
 			req.getSession().removeAttribute(SESSION_APP);
 		} 
 		return json_return;
-	}
-	
-	
-	//Permet de savoir si l'utilisateur est actuellement connecté ou non
-	@GET
-	@Path("/isConnected")
-	@Produces(MediaType.APPLICATION_JSON)
-	public String getApp(@Context HttpServletRequest req) {
-		Apprenti app = (Apprenti) req.getSession().getAttribute(SESSION_APP);
-		JSONObject jObj = new JSONObject();
-		jObj.put("connected", false);
-		if(app != null) {
-			jObj.replace("connected", true);
-		}
-		
-		return jObj.toJSONString();
 	}
 }
