@@ -35,7 +35,7 @@ public abstract class GestionForm {
 	protected void verifierMail(String mail) throws Exception {
 		if(!mail.isEmpty()) {
 			//if(!mail.matches("^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)+$")) {
-				throw new Exception("Merci de saisir une adresse mail valide !");
+				//throw new Exception("Merci de saisir une adresse mail valide !");
 			//}
 		}
 		else { //Si le mail est null
