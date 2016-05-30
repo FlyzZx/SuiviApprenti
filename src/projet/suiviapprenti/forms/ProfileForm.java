@@ -147,7 +147,7 @@ public class ProfileForm extends GestionForm {
 			
 	private void verifierMission(String mission) throws Exception {
 		if(mission.isEmpty()) {
-			throw new Exception("Veuillez saisir une mission de poursuite d'étude");
+			throw new Exception("Veuillez saisir une mission principale");
 		}
 	}
 }
