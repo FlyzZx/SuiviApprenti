@@ -20,7 +20,7 @@ import projet.suiviapprenti.REST.JSON.JSONViews;
 
 @Path("/login")
 public class Login {
-	public static final String SESSION_APP	= "restLog";
+	public static final String SESSION_APP	= projet.suiviapprenti.servlets.Login.ATT_SESSION;
 	
 	//Permet la connection d'un utilisateur en REST
 	@GET
