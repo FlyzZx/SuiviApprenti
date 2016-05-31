@@ -1,20 +1,27 @@
 package projet.suiviapprenti.REST;
 
 import java.io.IOException;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.MultivaluedMap;
 
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.SerializationConfig.Feature;
 
 import projet.suiviapprenti.DAL.Entitys.Apprenti;
 import projet.suiviapprenti.REST.JSON.JSONViews;
+import projet.suiviapprenti.REST.util.HttpParamWrapper;
 import projet.suiviapprenti.forms.ParcoursForm;
 import projet.suiviapprenti.forms.ProfileForm;
 
@@ -55,13 +62,15 @@ public class Profil {
 	 */
 	@POST
 	@Path("/modifierProfil")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
-	public String modifierApprenti(@Context HttpServletRequest request) {
+	public String modifierApprenti(MultivaluedMap<String, String> params, @Context HttpServletRequest request) {
 		String jsonReturn = "Veuillez vous connecter...";
 		Apprenti app = (Apprenti) request.getSession().getAttribute(Login.SESSION_APP);
+		HttpParamWrapper wrapperRequest = new HttpParamWrapper(request, addParamToRequest(params));
 		if(app != null) {
 			ProfileForm profilForm = new ProfileForm();
-			profilForm.verifierFormulaire(request);
+			profilForm.verifierFormulaire(wrapperRequest);
 			if(profilForm.getErreurs().isEmpty()) {
 				jsonReturn = "";
 			} else {
@@ -75,5 +84,16 @@ public class Profil {
 			}
 		}
 		return jsonReturn;
+	}
+	
+	private Map<String, String[]> addParamToRequest(MultivaluedMap<String, String> params) {
+		Iterator keyIt = params.keySet().iterator();
+		Map<String, String[]> paramsMap = new HashMap<>();
+		while(keyIt.hasNext()) {
+			String key = (String) keyIt.next();
+			String value = params.get(key).get(0);
+			paramsMap.put(key, new String[] { value });
+		}
+		return paramsMap;
 	}
 }
