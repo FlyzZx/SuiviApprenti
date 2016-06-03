@@ -37,4 +37,11 @@ public class Login {
 		} 
 		return json_return;
 	}
+	
+	@GET
+	@Path("/logoff")
+	public void disconnect(@Context HttpServletRequest request) {
+		Apprenti app = (Apprenti) request.getSession().getAttribute(Login.SESSION_APP);
+		if(app != null) request.getSession().removeAttribute(Login.SESSION_APP);
+	}
 }

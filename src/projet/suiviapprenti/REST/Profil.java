@@ -48,12 +48,6 @@ public class Profil {
 		return jsonReturn;
 	}
 	
-	@GET
-	@Path("/logoff")
-	public void disconnect(@Context HttpServletRequest request) {
-		Apprenti app = (Apprenti) request.getSession().getAttribute(Login.SESSION_APP);
-		if(app != null) request.getSession().removeAttribute(Login.SESSION_APP);
-	}
 	
 	/**
 	 * 
@@ -67,7 +61,7 @@ public class Profil {
 	public String modifierApprenti(MultivaluedMap<String, String> params, @Context HttpServletRequest request) {
 		String jsonReturn = "Veuillez vous connecter...";
 		Apprenti app = (Apprenti) request.getSession().getAttribute(Login.SESSION_APP);
-		HttpParamWrapper wrapperRequest = new HttpParamWrapper(request, addParamToRequest(params));
+		HttpParamWrapper wrapperRequest = new HttpParamWrapper(request, params);
 		if(app != null) {
 			ProfileForm profilForm = new ProfileForm();
 			profilForm.verifierFormulaire(wrapperRequest);
@@ -84,16 +78,5 @@ public class Profil {
 			}
 		}
 		return jsonReturn;
-	}
-	
-	private Map<String, String[]> addParamToRequest(MultivaluedMap<String, String> params) {
-		Iterator keyIt = params.keySet().iterator();
-		Map<String, String[]> paramsMap = new HashMap<>();
-		while(keyIt.hasNext()) {
-			String key = (String) keyIt.next();
-			String value = params.get(key).get(0);
-			paramsMap.put(key, new String[] { value });
-		}
-		return paramsMap;
 	}
 }
