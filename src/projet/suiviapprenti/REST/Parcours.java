@@ -15,6 +15,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 
 import projet.suiviapprenti.DAL.Entitys.Apprenti;
 import projet.suiviapprenti.REST.util.HttpParamWrapper;
+import projet.suiviapprenti.forms.ParcoursForm;
 import projet.suiviapprenti.forms.ProfileForm;
 
 @Path("/parcours")
@@ -30,13 +31,18 @@ public class Parcours {
 		HttpParamWrapper wrapperRequest = new HttpParamWrapper(request, params);
 		if(app != null) {
 			//TODO Ajouter le parcours
-		} else {
-			ObjectMapper mapper = new ObjectMapper();
-			try {
-				//jsonReturn = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(profilForm.getErreurs());
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			ParcoursForm parcoursForm = new ParcoursForm();
+			parcoursForm.verifierAjoutParcours(wrapperRequest);
+			if(parcoursForm.getErreurs().isEmpty()) {
+				jsonReturn = "";
+			} else {
+				ObjectMapper mapper = new ObjectMapper();
+				try {
+					jsonReturn = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(parcoursForm.getErreurs());
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
 
