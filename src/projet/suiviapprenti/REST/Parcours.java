@@ -48,4 +48,60 @@ public class Parcours {
 
 		return jsonReturn;
 	}
+	
+	@POST
+	@Path("/modifierParcours")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces(MediaType.APPLICATION_JSON)
+	public String modifierParcours(MultivaluedMap<String, String> params, @Context HttpServletRequest request) {
+		String jsonReturn = "Veuillez vous connecter...";
+		Apprenti app = (Apprenti) request.getSession().getAttribute(Login.SESSION_APP);
+		HttpParamWrapper wrapperRequest = new HttpParamWrapper(request, params);
+		if(app != null) {
+			//TODO Ajouter le parcours
+			ParcoursForm parcoursForm = new ParcoursForm();
+			parcoursForm.verifierUpdateParcours(wrapperRequest);
+			if(parcoursForm.getErreurs().isEmpty()) {
+				jsonReturn = "";
+			} else {
+				ObjectMapper mapper = new ObjectMapper();
+				try {
+					jsonReturn = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(parcoursForm.getErreurs());
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+
+		return jsonReturn;
+	}
+	
+	@POST
+	@Path("/supprimerParcours")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces(MediaType.APPLICATION_JSON)
+	public String supprimerParcours(MultivaluedMap<String, String> params, @Context HttpServletRequest request) {
+		String jsonReturn = "Veuillez vous connecter...";
+		Apprenti app = (Apprenti) request.getSession().getAttribute(Login.SESSION_APP);
+		HttpParamWrapper wrapperRequest = new HttpParamWrapper(request, params);
+		if(app != null) {
+			//TODO Ajouter le parcours
+			ParcoursForm parcoursForm = new ParcoursForm();
+			parcoursForm.verifierDeleteParcours(wrapperRequest);
+			if(parcoursForm.getErreurs().isEmpty()) {
+				jsonReturn = "";
+			} else {
+				ObjectMapper mapper = new ObjectMapper();
+				try {
+					jsonReturn = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(parcoursForm.getErreurs());
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+
+		return jsonReturn;
+	}
 }
