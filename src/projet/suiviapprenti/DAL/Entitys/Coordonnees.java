@@ -23,14 +23,14 @@ import projet.suiviapprenti.REST.JSON.JSONViews;
 @Table(name = "coordonnees", catalog = "suiviapprenti")
 public class Coordonnees implements java.io.Serializable {
 
-	@JsonView(JSONViews.InfoProfil.class) private Integer idcoordonnees;
-	@JsonView(JSONViews.InfoProfil.class) private String rue;
-	@JsonView(JSONViews.InfoProfil.class) private String ville;
-	@JsonView(JSONViews.InfoProfil.class) private String codePostal;
-	@JsonView(JSONViews.InfoProfil.class) private String telephone;
-	@JsonView(JSONViews.InfoProfil.class) private String mobile;
-	@JsonView(JSONViews.InfoProfil.class) private String email;
-	@JsonView(JSONViews.InfoProfil.class) private String site;
+	@JsonView(JSONViews.AutocompleteEntreprise.class) private Integer idcoordonnees;
+	@JsonView(JSONViews.AutocompleteEntreprise.class) private String rue;
+	@JsonView(JSONViews.AutocompleteEntreprise.class) private String ville;
+	@JsonView(JSONViews.AutocompleteEntreprise.class) private String codePostal;
+	@JsonView(JSONViews.AutocompleteEntreprise.class) private String telephone;
+	@JsonView(JSONViews.AutocompleteEntreprise.class) private String mobile;
+	@JsonView(JSONViews.AutocompleteEntreprise.class) private String email;
+	@JsonView(JSONViews.AutocompleteEntreprise.class) private String site;
 	private Set<Apprenti> apprentis = new HashSet<Apprenti>(0);
 	private Set<Entreprise> entreprises = new HashSet<Entreprise>(0);
 

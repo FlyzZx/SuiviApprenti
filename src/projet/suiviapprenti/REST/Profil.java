@@ -40,8 +40,7 @@ public class Profil {
 			try {
 				jsonReturn = mapper.writerWithDefaultPrettyPrinter().withView(JSONViews.InfoProfil.class).writeValueAsString(app);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				jsonReturn = e.getMessage();
 			}
 		}
 		

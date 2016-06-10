@@ -14,11 +14,14 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
+import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.map.SerializationConfig.Feature;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import projet.suiviapprenti.DAL.HibernateUtil;
 import projet.suiviapprenti.DAL.Entitys.Apprenti;
+import projet.suiviapprenti.REST.JSON.JSONViews;
 
 @Path("/entreprise")
 public class Entreprise {
@@ -28,28 +31,21 @@ public class Entreprise {
 	@GET
 	@Path("/autocomplete")
 	public String autocompleteEntreprise(@Context HttpServletRequest request,
-			 							@Context HttpServletResponse response,
-										@QueryParam("choix") String choix, 
+			 							@Context HttpServletResponse response, 
 										@QueryParam("term") String term) {
 		String retour = ERR_LOG;
-		System.out.println(choix);
+		ObjectMapper objMap = new ObjectMapper();
 		Apprenti app = (Apprenti) request.getSession().getAttribute(Login.SESSION_APP);
 		if(app != null) {
-			JSONArray jsonArr = new JSONArray();
-			JSONObject jsonObj = new JSONObject();
-			List<projet.suiviapprenti.DAL.Entitys.Entreprise> ent = HibernateUtil.getEntrepriseDAO().getEntreprises();
-			Iterator i = ent.iterator();
-			String query = (String)request.getParameter("term");
+			List<projet.suiviapprenti.DAL.Entitys.Entreprise> ent;
+			objMap.configure(Feature.DEFAULT_VIEW_INCLUSION, false); //Utiliser uniquement les champs marqués
+			try {
+				ent = HibernateUtil.getEntrepriseDAO().getEntrepriseBeginBy(term);
+				retour = objMap.writerWithDefaultPrettyPrinter().withView(JSONViews.AutocompleteEntreprise.class).writeValueAsString(ent);
 
-				while(i.hasNext()) {
-					projet.suiviapprenti.DAL.Entitys.Entreprise tmp = (projet.suiviapprenti.DAL.Entitys.Entreprise) i.next();
-					if(tmp.getNomEntreprise().toUpperCase().startsWith(query.toUpperCase())) {
-						jsonArr.add(tmp.getNomEntreprise());
-						jsonArr.add(tmp.getIdentreprise());
-					}
-				}
-				retour = jsonArr.toJSONString();
-
+			} catch (Exception e) {
+				retour = e.getMessage();
+			}
 		}
 		return retour;
 	}

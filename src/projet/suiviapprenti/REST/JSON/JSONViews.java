@@ -1,5 +1,6 @@
 package projet.suiviapprenti.REST.JSON;
 
 public class JSONViews {
-	public static class InfoProfil {};
+	public static class InfoProfil extends AutocompleteEntreprise {};
+	public static class AutocompleteEntreprise {};
 }

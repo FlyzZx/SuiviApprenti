@@ -37,18 +37,15 @@ public class ApprentiDAOHibernate implements ApprentiDAO {
 			if(user != null) {
 				Hibernate.initialize(user.getCoordonnees());
 				Hibernate.initialize(user.getClasse());
-				Hibernate.initialize(user.getEntreprise());				
+				Hibernate.initialize(user.getEntreprise());
+				Hibernate.initialize(user.getEntreprise().getCoordonnees());
 				Hibernate.initialize(user.getParcoursPostBtses());
 				Hibernate.initialize(user.getCursusformations());
 				Iterator<ParcoursPostBts> it = user.getParcoursPostBtses().iterator();
 				while(it.hasNext()) {
 					ParcoursPostBts tmp = (ParcoursPostBts)it.next();
 					Hibernate.initialize(tmp.getEntreprise());
-					try {
-						Hibernate.initialize(tmp.getEntreprise().getCoordonnees());
-					} catch (NullPointerException e) {
-						
-					}		
+					Hibernate.initialize(tmp.getEntreprise().getCoordonnees());	
 				}
 				
 			}

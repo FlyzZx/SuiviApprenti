@@ -9,4 +9,5 @@ public interface EntrepriseDAO {
 	public Entreprise getEntrepriseById(int idEntreprise);
 	public void addOrUpdateEntreprise(Entreprise ent) throws Exception;
 	public Entreprise getLastEntreprise();
+	public List<Entreprise> getEntrepriseBeginBy(String begin) throws Exception;
 }

@@ -105,5 +105,32 @@ public class EntrepriseDAOHibernate implements EntrepriseDAO {
 	}
 
 
+	@Override
+	public List<Entreprise> getEntrepriseBeginBy(String begin) throws Exception {
+		Session session = sessionFact.openSession();
+		Transaction tx = session.beginTransaction();
+		List<Entreprise> retour = null;
+		
+		try {
+			Query req = session.createQuery("From Entreprise e Where e.nomEntreprise like :beg");
+			req.setParameter("beg", begin + "%");
+			req.setMaxResults(10);
+			retour = (List<Entreprise>) req.list();
+			Iterator<Entreprise> it = retour.iterator();
+			while (it.hasNext()) {
+				Entreprise tmp = it.next();
+				Hibernate.initialize(tmp.getCoordonnees());
+			}
+			tx.commit();
+		} catch (HibernateException e) {
+			tx.rollback();
+			throw new Exception("Erreur lors de la récupération");
+		} finally {
+			session.close();
+		}
+		return retour;
+	}
+
+
 
 }
