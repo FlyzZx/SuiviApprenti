@@ -54,6 +54,7 @@ public class UpdateProfile extends HttpServlet {
 			request.removeAttribute(ATT_SAISIES);
 			response.sendRedirect(request.getContextPath() + SERVLET_PROFILE);			
 		} else {
+			request.setAttribute(ATT_MISSION_ENUM, MissionPrincipale.values());
 			request.getRequestDispatcher(VUE_UPDT_PROFILE).forward(request, response);
 		}
 		
